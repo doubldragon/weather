@@ -2,6 +2,8 @@
 var zipInput = document.getElementById('zipInput');
 var weatherButton = document.getElementById('weatherButton');
 var output = document.getElementById('output');
+var city_name = document.getElementById('city_name');
+var temp = document.getElementById('temp');
 
 document.onreadystatchange = function() {
     if (document.readyState == "interactive") {
@@ -21,15 +23,16 @@ function getWeather() {
 }
 
 function catchResponse() {
-	 $('#output').hide();
-	 $('#error').hide();
+	$('#output').hide();
+	$('#error').hide();
+	console.dir(apiRequest);
 	if (apiRequest.statusText == 'OK') {
 		parseResults();
 	} else {
 		httpRequestOnError();
 	}
-   
-    console.log(apiRequest.statusText);
+   console.log(apiRequest.response);
+   console.log(apiRequest.statusText);
 }
 
 function httpRequestOnError() {
@@ -37,6 +40,13 @@ function httpRequestOnError() {
     console.log("did not get weather");
 }
 function parseResults() {
+	
+	var results = JSON.parse(apiRequest.response);
+	city_name.innerHTML = results.name;
+	temp.innerHTML = results.main.temp;
+
 	$('#output').toggle();
+
+	console.log(results.coord.lon);
 	console.log('Parsing the api call');
 }
