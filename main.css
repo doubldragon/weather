@@ -1,0 +1,33 @@
+.container {
+	max-width: 85%;
+}
+.panel-heading {
+	background-color: #ff571f;
+}
+
+.zipgroup {
+	margin-top: 100px;
+
+}
+
+#error {
+	display: none;
+}
+
+#output {
+	display: none;
+}
+
+#input-form {
+	margin-top: 100px;
+	margin-bottom: 50px;
+	vertical-align: middle;
+}
+
+h1 {
+	text-align: center;
+}
+
+.input-group-btn {
+	max-width: 30%;
+}
