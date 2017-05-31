@@ -14,61 +14,40 @@
 
 <body>
     <div class="container-fluid">
+        <div class="jumbotron">Weather App</div>
         <div class="container col-md-4"></div>
         <div class="container col-md-4">
+            
             <div class="zipgroup" id="input-form">
                 <h1>Weather App</h1>
                 <div class="input-group">
                     <input type="number" id="zipInput" class="form-control" placeholder="Enter Zip Code">
                     <span class="input-group-btn">
                         <input class="btn btn-primary" id="weatherButton" type="button" value="Get Weather" onclick="getWeather()">
-                    	</span>
+                	</span>
                 </div>
             </div>
             <div id='error' class="alert-danger" role="alert">Error processing request</div>
             <div id='output'>
-                <div id="city">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <h3>City</h3>
-                        </div>
-                        <div class="panel-body" id='city_name'>
-                            Name of City
-                        </div>
-                    </div>
-                    <div id="temperature">
-                        <div class="panel panel-info">
-                            <div class="panel-heading">
-                                <h3>Temperature</h3>
-                            </div>
-                            <div class="panel-body" id="temp">
-                                Temp
-                            </div>
-                        </div>
-                        <div id="condition">
-                            <div class="panel panel-info">
-                                <div class="panel-heading">
-                                    <h3>Conditions</h3>
-                                </div>
-                                <div class="panel-body">
-                                    Conditions
-                                </div>
-                            </div>
-                            <div id="image">
-                                <div class="panel panel-info">
-                                    <div class="panel-heading">
-                                        <h3>Image</h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        Image
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading"><h3>City</h3></div>
+                    <div class="panel-body" id='city_name'>Name of City</div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading"><h3>Temperature</h3></div>
+                    <div class="panel-body" id="temp"><p>Temp</p></div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading"><h3>Conditions</h3></div>
+                    <div class="panel-body" id='conditions'>Conditions</div>
+                </div>                       
+                <div class="panel panel-info">
+                    <div class="panel-heading"><h3>Image</h3></div>
+                    <div class="panel-body" id='image'>Image</div>
                 </div>
             </div>
         </div>
+        <div class="container col-md-4"></div>
     </div>
     <script src="main.js"></script>
 </body>

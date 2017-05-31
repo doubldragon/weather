@@ -3,10 +3,13 @@
 }
 .panel-heading {
 	background-color: #ff571f;
+	padding-top: 10px;
+	position: relative;
+
 }
 
 .zipgroup {
-	margin-top: 100px;
+	/*margin-top: 100px;*/
 
 }
 
@@ -19,15 +22,32 @@
 }
 
 #input-form {
-	margin-top: 100px;
+	
 	margin-bottom: 50px;
 	vertical-align: middle;
 }
 
-h1 {
+h1, h3 {
 	text-align: center;
 }
 
 .input-group-btn {
 	max-width: 30%;
+}
+
+.panel-body {
+	vertical-align: middle !important;
+
+}
+.jumbotron {
+	height: 500px;
+    background-image: url("bgimage.jpg");
+    background-color: #17234E;
+    margin-top: 100px;
+    margin-bottom: 0;
+    min-height: 200px;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: cover;
+    background-size: cover;
 }

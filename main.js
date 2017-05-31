@@ -4,6 +4,8 @@ var weatherButton = document.getElementById('weatherButton');
 var output = document.getElementById('output');
 var city_name = document.getElementById('city_name');
 var temp = document.getElementById('temp');
+var conditions = document.getElementById('conditions');
+var icon = document.getElementById('image');
 
 document.onreadystatchange = function() {
     if (document.readyState == "interactive") {
@@ -42,8 +44,17 @@ function httpRequestOnError() {
 function parseResults() {
 	
 	var results = JSON.parse(apiRequest.response);
+	var celsius = results.main.temp - 273.15
+	var fahr = celsius * 9/5 + 32;
+	var iconUrl = "http://openweathermap.org/img/w/" + results.weather[0].icon + ".png";
+	var img = 	document.createElement('img');
+	img.src = iconUrl;
+	// console.log(iconUrl);
 	city_name.innerHTML = results.name;
-	temp.innerHTML = results.main.temp;
+	temp.innerHTML = 'Kelvin: ' + results.main.temp + 'K    Celsius: ' + celsius.toFixed(0) + '    Fahrenheit: ' + fahr.toFixed(0);
+	conditions.innerHTML = results.weather[0].description;
+	icon.innerHTML = $(".image").html(img);
+
 
 	$('#output').toggle();
 
