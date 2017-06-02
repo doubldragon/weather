@@ -6,9 +6,10 @@ var city_name = document.getElementById('city_name');
 var temp = document.getElementById('temp');
 var conditions = document.getElementById('conditions');
 var icon = document.getElementById('image');
-var fahr = document.getElementById('fahr');
+var temp_display = document.getElementById('temp_display');
 var celsius = document.getElementById('celsius');
 var kelvin = document.getElementById('kelvin');
+var results;
 
 document.onreadystatchange = function() {
     if (document.readyState == "interactive") {
@@ -27,7 +28,7 @@ function getWeather() {
     apiRequest.send();
 }
 
-function catchResponse() {
+function catchResponse() { //receives the api request
 	$('#output').hide();
 	$('#error').hide();
 	console.dir(apiRequest);
@@ -36,8 +37,6 @@ function catchResponse() {
 	} else {
 		httpRequestOnError();
 	}
-   console.log(apiRequest.response);
-   console.log(apiRequest.statusText);
 }
 
 function httpRequestOnError() {
@@ -46,15 +45,40 @@ function httpRequestOnError() {
 }
 function parseResults() {
 	
-	var results = JSON.parse(apiRequest.response);
+	results = JSON.parse(apiRequest.response);
 	var iconUrl = "http://openweathermap.org/img/w/" + results.weather[0].icon + ".png";
 	var img = 	document.createElement('img');
 	img.src = iconUrl;
-	fahr.innerHTML = Math.round(results.main.temp*9/5-459.67) + '&#176 F';
-	celsius.innerHTML = Math.round(results.main.temp - 273.15) + '&#176 C';
-	kelvin.innerHTML = Math.round(results.main.temp) + 'K';
-	city_name.innerHTML = '<p>' + results.name + '</p>';
-	conditions.innerHTML = '<p>' + results.weather[0].description + '</p>';
-	icon.innerHTML = '<p>' + $(".image").html(img) +'</p>';
+	convTemp('fahr')
+	city_name.innerHTML = results.name;
+	conditions.innerHTML = capital(results.weather[0].description);
+	icon.src = iconUrl;
 	$('#output').toggle();
+}
+
+function convTemp(id){
+	var temp = results.main.temp;
+	var unit;
+	switch (id) {
+		case "fahr":
+			temp = temp *9/5-459.67;
+			unit = "&#176F"
+			break;
+		case "celsius":
+			temp = temp - 273.15;
+			unit = "&#176C"
+			break;
+		case "kelvin":
+			unit = "K";
+			break;
+	}
+	temp_display.innerHTML = "" + Math.round(temp) + unit;
+}
+
+function capital (string) {
+	var array = string.split(" ");
+	for (var i=0; i < array.length; i++){
+		array[i] = array[i].charAt(0).toUpperCase() + array[i].slice(1);
+	}
+	return array.join(" ");
 }
